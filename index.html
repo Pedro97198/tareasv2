@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Tareas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        #main-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+
+        h2 {
+            color: #004d40;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #004d40;
+            padding-bottom: 5px;
+        }
+
+        #task-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #task-form input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        #task-review-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        #task-list, #review-list, #note-pad {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            background-color: #00796b;
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        #task-history {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            #task-review-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <h1>Agenda de Tareas</h1>
+        <div id="task-form">
+            <input type="text" id="new-task-name" placeholder="Nombre de la tarea" required>
+            <button onclick="addTask()">Agregar Tarea</button>
+        </div>
+
+        <div id="task-review-container">
+            <div id="task-list">
+                <h2>Tareas Pendientes</h2>
+                <ul id="pending-tasks"></ul>
+            </div>
+
+            <div id="review-list">
+                <h2>Revisión Pendiente</h2>
+                <ul id="review-tasks"></ul>
+            </div>
+
+            <div id="note-pad">
+                <h2>Bloc de Notas</h2>
+                <textarea id="note-text" placeholder="Escribe tus anotaciones aquí..." rows="10"></textarea>
+                <button id="save-note-button" onclick="saveNote()">Guardar Nota</button>
+            </div>
+        </div>
+
+        <div id="task-history">
+            <h3>Historial de Tareas Completadas</h3>
+            <ul id="completed-tasks"></ul>
+        </div>
+    </div>
+
+    <script>
+        let tasks = [];
+        let currentTaskIndex = null;
+
+        // Cargar tareas desde el servidor
+        function loadTasks() {
+            fetch('/tasks')
+                .then(response => response.json())
+                .then(data => {
+                    tasks = data;
+                    renderTasks();
+                })
+                .catch(err => console.error('Error al cargar tareas:', err));
+        }
+
+        // Renderizar tareas en la interfaz
+        function renderTasks() {
+            const pendingTasksEl = document.getElementById('pending-tasks');
+            const reviewTasksEl = document.getElementById('review-tasks');
+            const completedTasksEl = document.getElementById('completed-tasks');
+
+            pendingTasksEl.innerHTML = '';
+            reviewTasksEl.innerHTML = '';
+            completedTasksEl.innerHTML = ''; // Limpiar historial
+
+            tasks.forEach((task, index) => {
+                const taskEl = document.createElement('li');
+                taskEl.innerText = `${task.name} - ${task.date}`;
+                taskEl.onclick = () => selectTask(index);
+
+                const doneButton = document.createElement('button');
+                doneButton.innerText = 'Completar';
+                doneButton.onclick = (e) => {
+                    e.stopPropagation();
+                    completeTask(index);
+                };
+
+                const reviewButton = document.createElement('button');
+                reviewButton.innerText = 'Mover a Revisión';
+                reviewButton.onclick = (e) => {
+                    e.stopPropagation();
+                    moveToReview(index);
+                };
+
+                taskEl.appendChild(doneButton);
+                taskEl.appendChild(reviewButton);
+
+                if (task.status === 'pending') {
+                    pendingTasksEl.appendChild(taskEl);
+                } else if (task.status === 'review') {
+                    reviewTasksEl.appendChild(taskEl);
+                } else if (task.status === 'completed') {
+                    taskEl.innerText += ` - Completada el ${task.completedDate}`;
+                    completedTasksEl.appendChild(taskEl);
+                }
+            });
+        }
+
+        // Seleccionar tarea para ver anotaciones
+        function selectTask(index) {
+            currentTaskIndex = index;
+            const noteTextArea = document.getElementById('note-text');
+            noteTextArea.value = tasks[index].notes;
+        }
+
+        // Agregar nueva tarea
+        function addTask() {
+            const taskName = document.getElementById('new-task-name').value;
+            if (taskName) {
+                const newTask = {
+                    name: taskName,
+                    date: new Date().toLocaleDateString(),
+                    status: 'pending',
+                    notes: ''
+                };
+                fetch('/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newTask)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadTasks(); // Recargar tareas
+                    document.getElementById('new-task-name').value = ''; // Limpiar el campo de entrada
+                })
+                .catch(err => console.error('Error al agregar tarea:', err));
+            }
+        }
+
+        // Completar tarea
+        function completeTask(index) {
+            fetch(`/tasks/${index}/complete`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al completar tarea');
+                }
+                loadTasks(); // Recargar tareas
+            })
+            .catch(err => console.error('Error al completar tarea:', err));
+        }
+
+        // Mover tarea a revisión
+        function moveToReview(index) {
+            fetch(`/tasks/${index}/review`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al mover a revisión');
+                }
+                loadTasks(); // Recargar tareas
+            })
+            .catch(err => console.error('Error al mover a revisión:', err));
+        }
+
+        // Guardar anotaciones
+        function saveNote() {
+            if (currentTaskIndex !== null) {
+                const noteTextArea = document.getElementById('note-text');
+                tasks[currentTaskIndex].notes = noteTextArea.value;
+
+                fetch(`/tasks/${currentTaskIndex}/notes`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ notes: noteTextArea.value })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al guardar notas');
+                    }
+                })
+                .catch(error => console.error('Error al guardar nota:', error));
+            }
+        }
+
+        // Cargar tareas al iniciar
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
+</body>
+</html>
