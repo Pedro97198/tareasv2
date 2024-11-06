@@ -8,4 +8,5 @@ jobs:
       - run: node --version
       - uses: actions/checkout@v3
       - run: npm install
+      - run: npm install express
       - run: node server.js
