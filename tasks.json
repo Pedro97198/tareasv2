@@ -1,0 +1,950 @@
+[
+  {
+    "name": "FORMACIÓN ARANCHA",
+    "date": "19/12/2024",
+    "status": "review",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0.5
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 3
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 1
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": "he estado hablando muchas cosas con arancha de poweer bi , compra de cosas  y sql, sage"
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "Reunión con Arancha para cambios en los cuadros de mando de ITT."
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  },
+  {
+    "name": "REUNIÓN PRINCIPADO",
+    "date": "19/12/2024",
+    "status": "review",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0.25
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 2
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0.5
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 1
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "Reunión semanal principado"
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": "reunion de requerimientos con el principado"
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "Apuntar nuevos cambios en cuadros de mando de OracleBi"
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  },
+  {
+    "name": "PYRAMIDE",
+    "date": "19/12/2024",
+    "status": "pending",
+    "notes": "",
+    "hours": 2,
+    "erp": "hacer cuadro de mando de RRHH",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 2.5
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 3.5
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 3
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 2
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 3
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "Elaboración de nuevas pantallas con gráficos y métricas en el cm de rrhh de Pyramide."
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": "cambios en los cuadros de mando "
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "cambios en el cuadro de mando de recursos humanos"
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": "Presentación de disposiciones de RRHH para Pyramide"
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  },
+  {
+    "name": "MMR",
+    "date": "20/12/2024",
+    "status": "pending",
+    "notes": "",
+    "hours": 1,
+    "erp": "reunión de requerimientos",
+    "horasAcumuladas": [
+      {
+        "fecha": "20/12/2024",
+        "horas": 0.5
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 2
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 3
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 1
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": "reunion inicial del proyecto"
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "primera formacion de power bi"
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": "Revisar datos de los cuadros de mando de Ventas y Compras"
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  },
+  {
+    "name": "VALCAT",
+    "date": "20/12/2024",
+    "status": "pending",
+    "notes": "",
+    "hours": 3,
+    "erp": "CM Comercial ",
+    "horasAcumuladas": [
+      {
+        "fecha": "20/12/2024",
+        "horas": 0.5
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 2
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 1
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 2
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": "cuadro de madndo de calidad"
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "crear informes de ventas por el previsto ."
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": "Realizar informe de comercial según requerimientos"
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  },
+  {
+    "name": "APUNTES DIARIOS",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 1
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "REUNIÓN ARACHA 0.25 AVILA:DOS TAREAS\nREUNIÓN PRINCIPADO \nHISLABOR \nTRADUCICON \nPYRAMIDE \n\n"
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": "´ñl´ñlñ´lñ´l"
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "HISLABOR",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0.5
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "Reunión Inicial de proyecto Hislabor"
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "VASCAT",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "MMR",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "AVILADOS",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0.25
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "Reunión con Arancha sobre modificaciones de cm respecto a la "
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "ITT TRADUCCION",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "Recordar que debe estar traducido en español y frances",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 1.5
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": "Traducción de las pantallas del cm de comercial de ITT al francés, tanto pantallas, tablas, filtros y medidas"
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "ECOTRACTOR",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "FORMACIÓN JAIME",
+    "date": "19/12/2024",
+    "status": "completed",
+    "notes": "",
+    "hours": 0,
+    "erp": "",
+    "horasAcumuladas": [
+      {
+        "fecha": "19/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "20/12/2024",
+        "horas": 0
+      },
+      {
+        "fecha": "24/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "25/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 0
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "19/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "20/12/2024",
+        "erp": ""
+      },
+      {
+        "fecha": "24/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "25/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": ""
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025",
+    "completedDate": "24/4/2025"
+  },
+  {
+    "name": "MONGODB",
+    "date": "25/4/2025",
+    "status": "pending",
+    "notes": "",
+    "hours": 2,
+    "erp": "publicar datos",
+    "horasAcumuladas": [
+      {
+        "fecha": "25/4/2025",
+        "horas": 1
+      },
+      {
+        "fecha": "29/4/2025",
+        "horas": 0
+      },
+      {
+        "fecha": "30/4/2025",
+        "horas": 0.5
+      },
+      {
+        "fecha": "17/5/2025",
+        "horas": 1
+      }
+    ],
+    "erpsAcumulados": [
+      {
+        "fecha": "25/4/2025",
+        "erp": "REALIZAR CLUSTER"
+      },
+      {
+        "fecha": "29/4/2025",
+        "erp": ""
+      },
+      {
+        "fecha": "30/4/2025",
+        "erp": "Conexion a la base de datos"
+      },
+      {
+        "fecha": "17/5/2025",
+        "erp": "Conexión a Mongo DB"
+      }
+    ],
+    "fechaHoras": "18/5/2025",
+    "fechaERP": "18/5/2025"
+  }
+]

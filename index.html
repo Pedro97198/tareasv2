@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Tareas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        #main-container {
+            width: 90%;
+            max-width: 2500px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+
+        h2 {
+            color: #004d40;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #004d40;
+            padding-bottom: 5px;
+        }
+
+        #task-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #task-form input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        #task-review-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px; /* Adjusted to reduce spacing between elements */
+        }
+
+        #task-list, #review-list, #note-pad, #erp-pad {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #final-erp {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hours-input {
+            width: 60px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            background-color: #00796b;
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        #task-history {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #completed-tasks-chart {
+            max-width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 800px) {
+            #task-review-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <h1>Agenda de Tareas</h1>
+        <div id="task-form">
+            <input type="text" id="new-task-name" placeholder="Nombre de la tarea" required>
+            <button onclick="addTask()">Agregar Tarea</button>
+        </div>
+
+        <div id="task-review-container">
+            <div id="task-list">
+                <h2>Tareas Pendientes</h2>
+                <ul id="pending-tasks"></ul>
+                <p><strong>Total Horas:</strong> <span id="total-hours">0</span></p>
+            </div>
+
+            <div id="review-list">
+                <h2>Revisión Pendiente</h2>
+                <ul id="review-tasks"></ul>
+            </div>
+
+            <div id="note-pad">
+                <h2>Bloc de Notas</h2>
+                <textarea id="note-text" placeholder="Escribe tus anotaciones aquí..." rows="10" oninput="saveNoteAutomatically()"></textarea>
+            </div>
+
+            <div id="erp-pad">
+                <h2>ERP</h2>
+                <textarea id="erp-text" placeholder="Escribe información ERP aquí..." rows="10" oninput="saveERPAutomatically()"></textarea>
+            </div>
+
+            <div id="final-erp">
+                <h2>ERP Definitivo</h2>
+                <div id="final-erp-content"></div>
+            </div>
+        </div>
+
+        <div id="report-section">
+            <h2>Generar Informe</h2>
+            <select id="report-period">
+                <option value="today">Informe Día Actual</option>
+                <option value="week">Informe Semana Actual</option>
+                <option value="month">Informe Mes Actual</option>
+            </select>
+            <button onclick="generateReport()">Generar Informe</button>
+            <pre id="report-result"></pre>
+        
+            <!-- Nuevo botón para descargar el informe en PDF -->
+            <div style="margin-top: 20px;">
+                <button onclick="generateReportPDF()">Descargar Informe en PDF</button>
+            </div>
+        </div>
+        
+
+
+        <div id="task-history">
+            <h3>Historial de Tareas Completadas</h3>
+            <ul id="completed-tasks"></ul>
+            <canvas id="completed-tasks-chart"></canvas>
+        </div>
+    </div>
+
+    <!-- Incluir la biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let tasks = [];
+        let currentTaskIndex = null;
+
+        function loadTasks() {
+            fetch('/tasks')
+                .then(response => response.json())
+                .then(data => {
+                    tasks = data;
+                    renderTasks();
+                    renderFinalERP();
+                    renderCompletedTasksChart();
+                })
+                .catch(err => console.error('Error al cargar tareas:', err));
+        }
+
+        function renderTasks() {
+            const pendingTasksEl = document.getElementById('pending-tasks');
+            const reviewTasksEl = document.getElementById('review-tasks');
+            const completedTasksEl = document.getElementById('completed-tasks');
+
+            pendingTasksEl.innerHTML = '';
+            reviewTasksEl.innerHTML = '';
+            completedTasksEl.innerHTML = '';
+
+            let totalHours = 0;
+
+            tasks.forEach((task, index) => {
+                const taskEl = document.createElement('li');
+                taskEl.innerText = `${task.name} - ${task.date}`;
+                taskEl.onclick = () => selectTask(index);
+
+                const hoursInput = document.createElement('input');
+                hoursInput.type = 'number';
+                hoursInput.value = task.hours || 0;
+                hoursInput.min = '0';
+                hoursInput.placeholder = 'Horas';
+                hoursInput.classList.add('hours-input');
+                hoursInput.onchange = (e) => {
+                    const hours = parseFloat(e.target.value) || 0;
+                    tasks[index].hours = hours;
+                    updateTaskHours(index, hours);
+                    renderTasks();
+                    renderFinalERP();
+                    renderCompletedTasksChart();
+                };
+
+                if (task.status === 'pending') {
+                    totalHours += task.hours || 0;
+                }
+
+                const doneButton = document.createElement('button');
+                doneButton.innerText = 'Completar';
+                doneButton.onclick = (e) => {
+                    e.stopPropagation();
+                    completeTask(index);
+                };
+
+                const reviewButton = document.createElement('button');
+                reviewButton.innerText = 'Mover a Revisión';
+                reviewButton.onclick = (e) => {
+                    e.stopPropagation();
+                    moveToReview(index);
+                };
+
+                taskEl.appendChild(hoursInput);
+                taskEl.appendChild(doneButton);
+                taskEl.appendChild(reviewButton);
+
+                if (task.status === 'pending') {
+                    pendingTasksEl.appendChild(taskEl);
+                } else if (task.status === 'review') {
+                    reviewTasksEl.appendChild(taskEl);
+                } else if (task.status === 'completed') {
+                    taskEl.innerText += ` - Completada el ${task.completedDate}`;
+                    completedTasksEl.appendChild(taskEl);
+                }
+            });
+
+            document.getElementById('total-hours').innerText = totalHours;
+        }
+
+        function renderFinalERP() {
+            const finalERPContentEl = document.getElementById('final-erp-content');
+            finalERPContentEl.innerHTML = '';
+
+            tasks.forEach(task => {
+                if (task.status === 'pending' && task.erp) { // Solo mostrar tareas pendientes con ERP escrito
+                    const taskDetailsEl = document.createElement('div');
+                    taskDetailsEl.innerHTML = `
+                        <strong>${task.name}</strong><br>
+                        Horas: ${task.hours || 0}<br>
+                        ERP: ${task.erp}<br><br>
+                    `;
+                    finalERPContentEl.appendChild(taskDetailsEl);
+                }
+            });
+        }
+
+        function renderCompletedTasksChart() {
+            const completedTasks = tasks.filter(task => task.status === 'completed');
+            const labels = completedTasks.map(task => task.name);
+            const data = completedTasks.map(task => task.horasAcumuladas.reduce((sum, item) => sum + item.horas, 0));
+
+            const ctx = document.getElementById('completed-tasks-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Horas Completadas',
+                        data: data
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateTaskHours(index, hours) {
+            fetch(`/tasks/${index}/hours`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ hours })
+            }).catch(error => console.error('Error al actualizar horas:', error));
+        }
+
+        function selectTask(index) {
+            currentTaskIndex = index;
+            const noteTextArea = document.getElementById('note-text');
+            noteTextArea.value = tasks[index].notes || '';
+
+            const erpTextArea = document.getElementById('erp-text');
+            erpTextArea.value = tasks[index].erp || '';
+        }
+
+        function addTask() {
+            const taskName = document.getElementById('new-task-name').value;
+            if (taskName) {
+                const newTask = {
+                    name: taskName,
+                    date: new Date().toLocaleDateString(),
+                    status: 'pending',
+                    notes: '',
+                    hours: 0,
+                    erp: '',
+                    horasAcumuladas: [],
+                    erpsAcumulados: []
+                };
+                fetch('/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newTask)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadTasks();
+                    document.getElementById('new-task-name').value = '';
+                })
+                .catch(err => console.error('Error al agregar tarea:', err));
+            }
+        }
+
+        function completeTask(index) {
+            fetch(`/tasks/${index}/complete`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al completar tarea');
+                }
+                loadTasks();
+                renderFinalERP();
+                renderCompletedTasksChart();
+            })
+            .catch(err => console.error('Error al completar tarea:', err));
+        }
+
+        function moveToReview(index) {
+            fetch(`/tasks/${index}/review`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al mover a revisión');
+                }
+                loadTasks();
+                renderFinalERP();
+                renderCompletedTasksChart();
+            })
+            .catch(err => console.error('Error al mover a revisión:', err));
+        }
+
+        function saveNoteAutomatically() {
+            if (currentTaskIndex !== null) {
+                const noteTextArea = document.getElementById('note-text');
+                tasks[currentTaskIndex].notes = noteTextArea.value;
+
+                fetch(`/tasks/${currentTaskIndex}/notes`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ notes: noteTextArea.value })
+                })
+                .catch(error => console.error('Error al guardar nota automáticamente:', error));
+            }
+        }
+        
+        function generateReport() {
+        const period = document.getElementById('report-period').value;
+        fetch(`/generate-report?period=${period}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('report-result').innerText = data.report;
+            })
+            .catch(err => alert('Error generando el informe'));
+    }
+
+
+    function generateReportPDF() {
+    const period = document.getElementById('report-period').value;
+    fetch(`/generate-report-pdf?period=${period}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al generar el informe PDF');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `informe-${period}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => console.error('Error al descargar el informe:', error));
+}
+
+
+        function saveERPAutomatically() {
+            if (currentTaskIndex !== null) {
+                const erpTextArea = document.getElementById('erp-text');
+                tasks[currentTaskIndex].erp = erpTextArea.value;
+
+                fetch(`/tasks/${currentTaskIndex}/erp`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ erp: erpTextArea.value })
+                })
+                .catch(error => console.error('Error al guardar ERP automáticamente:', error));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
+</body>
+</html>
