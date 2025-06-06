@@ -1,23 +1,29 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { MongoClient } = require('mongodb'); // <-- ESTA ES LA LÍNEA QUE TE FALTA
+const { MongoClient } = require('mongodb');
 const puppeteer = require('puppeteer');
 
 require('dotenv').config();
 
 
 const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri);
+let mongoEnabled = !!uri;
+const client = uri ? new MongoClient(uri) : null;
 let collection;
 
 async function connectMongo() {
+    if (!mongoEnabled) {
+        console.warn('MONGO_URI no definido. Funcionalidades de MongoDB deshabilitadas.');
+        return;
+    }
     try {
         await client.connect();
         collection = client.db("agendaDB").collection("tasks");
         console.log("MongoDB conectado");
     } catch (err) {
         console.error("Error al conectar MongoDB:", err);
+        mongoEnabled = false;
     }
 }
 
@@ -25,6 +31,7 @@ connectMongo();
 
 
 async function saveBackupToMongo(tasks) {
+    if (!mongoEnabled) return;
     try {
         await collection.replaceOne({}, { tasks }, { upsert: true });
         console.log("Copia de seguridad guardada en MongoDB.");
